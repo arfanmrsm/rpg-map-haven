@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TTTM2113 Web Development Deliverables</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Corporate / Google Material Palette */
+      --primary-teal: #00A19C; 
+      --primary-hover: #008581;
+      --surface-color: #ffffff;
+      --bg-color: #f8f9fa;
+      --google-border: #dadce0;
+      --text-main: #202124;
+      --text-muted: #5f6368;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-main);
+      background-color: var(--bg-color);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------------------------------------------------
+       HERO SECTION WITH ANIMATED BACKGROUND & GRAPHICS
+       --------------------------------------------------- */
+    .hero-header {
+      position: relative;
+      background: linear-gradient(135deg, #ffffff 0%, #f4f9f9 100%);
+      border-bottom: 1px solid var(--google-border);
+      padding: 6rem 0 5rem 0;
+      overflow: hidden; /* Keeps animated elements inside */
+    }
+
+    /* 1. Animated Ambient Orbs (Mesh Gradient Effect) */
+    .hero-bg-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: 0;
+      animation: floatOrb 20s infinite alternate ease-in-out;
+    }
+    
+    .orb-1 {
+      width: 400px; height: 400px;
+      background: rgba(0, 161, 156, 0.12); /* Soft Teal */
+      top: -100px; left: -100px;
+    }
+    
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: rgba(52, 168, 83, 0.08); /* Soft Green */
+      bottom: -150px; right: -50px;
+      animation-delay: -5s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -40px) scale(1.05); }
+      100% { transform: translate(-30px, 30px) scale(0.95); }
+    }
+
+    /* 2. Floating Developer Graphic Icons */
+    .floating-graphic {
+      position: absolute;
+      color: rgba(0, 161, 156, 0.06); /* Extremely subtle */
+      z-index: 0;
+      animation: floatGraphic 12s infinite ease-in-out;
+    }
+
+    .graphic-1 { font-size: 8rem; top: 10%; left: 15%; animation-delay: 0s; }
+    .graphic-2 { font-size: 5rem; bottom: 15%; left: 25%; animation-delay: -3s; }
+    .graphic-3 { font-size: 10rem; top: 15%; right: 10%; animation-delay: -7s; }
+    .graphic-4 { font-size: 6rem; bottom: 20%; right: 25%; animation-delay: -10s; }
+
+    @keyframes floatGraphic {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(8deg); }
+    }
+
+    /* Ensure hero content stays above animations */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ---------------------------------------------------
+       COMPONENTS
+       --------------------------------------------------- */
+    .profile-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--surface-color);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge-teal {
+      background-color: rgba(0, 161, 156, 0.1);
+      color: var(--primary-teal);
+      border: 1px solid rgba(0, 161, 156, 0.2);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Developer Dot Grid Pattern for Main Body */
+    .grid-bg {
+      background-image: radial-gradient(var(--google-border) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Google Style Cards */
+    .clean-card {
+      background: var(--surface-color);
+      border: 1px solid var(--google-border);
+      border-radius: 12px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .clean-card:hover {
+      border-color: rgba(0, 161, 156, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 161, 156, 0.08), 0 2px 8px rgba(32, 33, 36, 0.04);
+      transform: translateY(-4px);
+    }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: var(--bg-color);
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      border: 1px solid var(--google-border);
+      transition: all 0.3s ease;
+    }
+
+    .clean-card:hover .icon-box {
+      background-color: rgba(0, 161, 156, 0.1);
+      color: var(--primary-teal);
+      border-color: rgba(0, 161, 156, 0.2);
+      transform: scale(1.1);
+    }
+
+    /* Typography */
+    .section-title {
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+    
+    .card-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-main);
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Buttons */
+    .btn-outline-custom {
+      color: var(--primary-teal);
+      border: 1px solid var(--google-border);
+      background: transparent;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-outline-custom:hover {
+      background-color: rgba(0, 161, 156, 0.04);
+      border-color: var(--primary-teal);
+      color: var(--primary-hover);
+    }
+
+    .btn-custom {
+      background-color: var(--primary-teal);
+      color: white;
+      border: none;
+      font-weight: 600;
+      transition: background-color 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 161, 156, 0.2);
+    }
+
+    .btn-custom:hover {
+      background-color: var(--primary-hover);
+      color: white;
+      box-shadow: 0 6px 12px rgba(0, 161, 156, 0.3);
+    }
+
+    .btn-arrow {
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+
+    .clean-card:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Project Section */
+    .project-section {
+      background-color: var(--surface-color);
+      border-top: 1px solid var(--google-border);
+      border-bottom: 1px solid var(--google-border);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--surface-color);
+      color: var(--text-muted);
+      border-top: 1px solid var(--google-border);
+    }
+
+/* 1. Hide default cursor across the page */
+  /* * {
+    cursor: none !important;
+  } */
+
+  /* 2. Central glowing dot */
+  #cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00a19c;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 3. Outer ring containing crosshairs */
+  #cursor-ring {
+    width: 44px;
+    height: 44px;
+    border: 2px solid rgba(0, 161, 156, 0.85);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s ease-out, width 0.2s, height 0.2s, background-color 0.2s;
+    box-shadow: 0 0 14px rgba(0, 161, 156, 0.5);
+  }
+
+  /* 4. Crosshair Lines */
+  .ch-line {
+    position: absolute;
+    background-color: #00a19c;
+    pointer-events: none;
+  }
+
+  /* Vertical Lines */
+  .ch-top, .ch-bottom {
+    width: 2px;
+    height: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .ch-top { top: -14px; }
+  .ch-bottom { bottom: -14px; }
+
+  /* Horizontal Lines */
+  .ch-left, .ch-right {
+    height: 2px;
+    width: 100px; /* Extended width for screen-wide tracking */
+    width: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ch-left { left: -14px; }
+  .ch-right { right: -14px; }
+
+  /* 5. Hover state over interactive elements */
+  a:hover ~ #cursor-ring,
+  button:hover ~ #cursor-ring,
+  .clickable:hover ~ #cursor-ring {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 161, 156, 0.15);
+    border-color: #00a19c;
+  }
+
+  /* 6. Dynamic Click Ripple */
+  .click-ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00a19c;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    transform: translate(-50%, -50%);
+    animation: rippleEffect 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  }
+
+  @keyframes rippleEffect {
+    0% {
+      width: 20px;
+      height: 20px;
+      opacity: 1;
+      border-width: 3px;
+    }
+    100% {
+      width: 130px;
+      height: 130px;
+      opacity: 0;
+      border-width: 1px;
+    }
+  }
+
+  </style>
+
+<script>
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+
+  // Track cursor movement
+  window.addEventListener('mousemove', (e) => {
+    const { clientX: x, clientY: y } = e;
+    dot.style.left = `${x}px`;
+    dot.style.top = `${y}px`;
+
+    ring.style.left = `${x}px`;
+    ring.style.top = `${y}px`;
+  });
+
+  // Spawn click ripple animation
+  window.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.classList.add('click-ripple');
+    ripple.style.left = `${e.clientX}px`;
+    ripple.style.top = `${e.clientY}px`;
+    
+    document.body.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 600);
+  });
+</script>
+
+</head>
+
+<body class="grid-bg">
+
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring">
+    <div class="ch-line ch-top"></div>
+    <div class="ch-line ch-bottom"></div>
+    <div class="ch-line ch-left"></div>
+    <div class="ch-line ch-right"></div>
+  </div>  
+
+  <!-- HERO HEADER (WITH ANIMATION) -->
+  <header class="hero-header text-center">
+    
+    <!-- Animated Ambient Mesh Orbs -->
+    <div class="hero-bg-orb orb-1"></div>
+    <div class="hero-bg-orb orb-2"></div>
+
+    <!-- Floating Graphic Icons -->
+    <i class="bi bi-code-slash floating-graphic graphic-1"></i>
+    <i class="bi bi-braces floating-graphic graphic-2"></i>
+    <i class="bi bi-globe2 floating-graphic graphic-3"></i>
+    <i class="bi bi-database floating-graphic graphic-4"></i>
+
+    <!-- Hero Content -->
+    <div class="container hero-content">
+      <img src="photo.jpg" alt="Muhammad Arfan" class="profile-avatar mb-4">
+      
+      <div class="mb-3">
+        <span class="badge badge-teal px-3 py-2 rounded-pill shadow-sm">
+          <i class="bi bi-code-square me-1"></i> TTTM2113 – Web Development
+        </span>
+      </div>
+
+      <h1 class="display-5 fw-extrabold mb-3 tracking-tight section-title">Deliverables Portfolio</h1>
+      <p class="fs-5 text-muted mb-0">
+        <span class="fw-bold" style="color: var(--text-main);">A219588</span> &bull; Muhammad Arfan
+      </p>
+    </div>
+  </header>
+
+  <!-- WEEKLY LABS SECTION -->
+  <main class="container py-5 mt-3">
+    <div class="text-center mb-5">
+      <h2 class="h3 section-title mb-3">Weekly Coursework</h2>
+      <p class="text-muted mx-auto mb-0" style="max-width: 600px; font-size: 1.05rem;">
+        Practical hands-on exercises and structured web development tasks completed throughout the semester.
+      </p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Lab 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-filetype-html"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 1</span>
+            </div>
+            <h3 class="card-title mb-2">Basic HTML</h3>
+            <p class="card-text mb-4">Introduction to HTML elements, semantic tags, and document structure.</p>
+            <a href="lab1/INDEX.html" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-ui-checks"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 2</span>
+            </div>
+            <h3 class="card-title mb-2">HTML Forms</h3>
+            <p class="card-text mb-4">Creating interactive forms, input validations, and collecting user data.</p>
+            <a href="lab-2/index.html" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-filetype-css"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 3</span>
+            </div>
+            <h3 class="card-title mb-2">Cascading Style Sheet</h3>
+            <p class="card-text mb-4">Designing, layout positioning, and styling web pages using CSS3.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 4 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-bootstrap"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 4</span>
+            </div>
+            <h3 class="card-title mb-2">Bootstrap 5</h3>
+            <p class="card-text mb-4">Building modern, mobile-responsive user interfaces using Bootstrap framework.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 5 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-filetype-php"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 5</span>
+            </div>
+            <h3 class="card-title mb-2">Basic PHP</h3>
+            <p class="card-text mb-4">Introduction to server-side scripting, control structures, and functions.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 6 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-database"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 6</span>
+            </div>
+            <h3 class="card-title mb-2">PHP + MySQL</h3>
+            <p class="card-text mb-4">Connecting database instances to PHP applications for CRUD operations.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 7 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-layers"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 7</span>
+            </div>
+            <h3 class="card-title mb-2">MVC Framework</h3>
+            <p class="card-text mb-4">Structuring web applications cleanly using Model-View-Controller architecture.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 8 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-shield-lock"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 8</span>
+            </div>
+            <h3 class="card-title mb-2">Advanced PHP</h3>
+            <p class="card-text mb-4">Developing secure session management, file uploads, and OOP PHP concepts.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 9 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-filetype-js"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 9</span>
+            </div>
+            <h3 class="card-title mb-2">JavaScript</h3>
+            <p class="card-text mb-4">Adding dynamic DOM manipulation and client-side interactivities.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 10 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-lightning-charge"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 10</span>
+            </div>
+            <h3 class="card-title mb-2">jQuery</h3>
+            <p class="card-text mb-4">Simplifying DOM operations, event handling, and animations with jQuery.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 11 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 clean-card">
+          <div class="card-body p-4 d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="icon-box"><i class="bi bi-cloud-arrow-down"></i></div>
+              <span class="badge bg-light text-secondary border rounded-pill px-3 py-2">Lab 11</span>
+            </div>
+            <h3 class="card-title mb-2">AJAX & REST APIs</h3>
+            <p class="card-text mb-4">Exchanging asynchronous data seamlessly between client and server using JSON.</p>
+            <a href="#" class="btn btn-outline-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+              View Task <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- INDIVIDUAL PROJECT SECTION -->
+  <section class="project-section py-5 mt-4">
+    <div class="container py-4">
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="h3 section-title mb-3">Capstone Project</h2>
+          <p class="text-muted fs-6 mb-0">
+            Developing a robust web-based <strong>Back-Office Management System</strong> tailored for a website development agency. 
+            Responsible for end-to-end interface design, server-side database logic, and asynchronous JavaScript/AJAX features.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100 clean-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="badge badge-teal rounded-pill mb-3 align-self-start px-3 py-2">Task 1</span>
+              <h3 class="card-title mb-2">HTML & CSS</h3>
+              <p class="card-text mb-4">Designing core wireframes, responsive layouts, and visual system themes.</p>
+              <a href="pt1\home.php" class="btn btn-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+                View Phase <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100 clean-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="badge badge-teal rounded-pill mb-3 align-self-start px-3 py-2">Task 2</span>
+              <h3 class="card-title mb-2">PHP & MySQL</h3>
+              <p class="card-text mb-4">Building backend routes, MVC structure, and relational database schemas.</p>
+              <a href="#" class="btn btn-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+                View Phase <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100 clean-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="badge badge-teal rounded-pill mb-3 align-self-start px-3 py-2">Task 3</span>
+              <h3 class="card-title mb-2">JS & AJAX</h3>
+              <p class="card-text mb-4">Integrating real-time asynchronous updates without full page reloads.</p>
+              <a href="#" class="btn btn-custom btn-sm rounded-pill stretched-link mt-auto align-self-start px-4">
+                View Phase <i class="bi bi-arrow-right ms-1 btn-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-xl-3">
+          <div class="card h-100 clean-card" style="border: 2px solid var(--primary-teal);">
+            <div class="card-body p-4 d-flex flex-column">
+              <span class="badge bg-dark rounded-pill mb-3 align-self-start px-3 py-2">Final Release</span>
+              <h3 class="card-title mb-2">System Delivery</h3>
+              <p class="card-text mb-4">System optimization, polish, access controls, and final release delivery.</p>
+              <a href="#" class="btn btn-dark btn-sm rounded-pill stretched-link mt-auto align-self-start px-4 fw-semibold">
+                Open Project <i class="bi bi-rocket-takeoff ms-1 btn-arrow"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4 text-center">
+    <div class="container">
+      <p class="fw-semibold text-main mb-1">TTTM2113 Web Development</p>
+      <p class="small mb-0">&copy; 2026 Muhammad Arfan &bull; All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

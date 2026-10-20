@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata</title>
+</head>
+<body>
+    <!--
+Matric Number: A219588
+Name: Muhammad Arfan bin Mohamad Sofian
+-->
+<h1>Biodata Form</h1>
+<hr>
+<form action="http://lrgs.ftsm.ukm.my/users/a123456/lab-2/validate_biodata.php" method="post" enctype="multipart/form-data">
+  <table border="1" cellpadding="10">
+    <tr>
+      <td>Name:</td>
+      <td><input required type="text" name="name" placeholder="Insert your name" autofocus></td>
+    </tr>
+    <tr>
+      <td>Age:</td>
+      <td><input required type="number" name="age" min="0" max="100" step="1"></td>
+    </tr>
+    <tr>
+      <td>Gender:</td>
+      <td><input required type="radio" name="gender" value="male" checked>Male<input type="radio" name="gender" value="female">Female</td>
+    </tr>
+    <tr>
+      <td>Address:</td>
+      <td><textarea required name="address" cols="50" rows="5" placeholder="Insert your address"></textarea></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><input required pattern=".*ukm.*" type="email" name="email" placeholder="Insert your email"></td>
+    </tr>
+    <tr>
+        <td>Date of Birth:</td>
+        <td><input required type="date" name="dob"></td>
+    </tr>
+    <tr>
+        <td>Height:</td>
+        <td><input required type="range" name="height" id="heightId" min = "100" max = "200" value = "150" oninput="outputId.value = heightId.value"><output id="outputId">150</output>cm</td>
+    </tr>
+    <tr>
+         <td>Tel:</td>
+         <!-- Pattern forces the format to start with +60 followed by 2 digits, a dash, and 7 or 8 digits -->
+         <td><input type="tel" name="phone" placeholder="+60##-#######" pattern="(\+60|0060)[0-9]{2}-[0-9]{7,8}" title="Phone number must begin with +60 or 0060, followed by 2 digits, a hyphen, and 7 to 8 digits"></td>
+    </tr>
+        
+    <tr>
+         <td>My Favorite Color:</td>
+         <td><input required type="color" name="color" value="green"></td>
+    </tr>
+        
+    <tr>
+         <td>FB/TW/IG:</td>
+         <td><input required type="url" name="fbtwig" placeholder="https://instagram.com/yourusername"></td>
+    </tr>
+        
+    <tr>
+         <td>My Face Photo:</td>
+         <td><input required type="file" name="photo" accept=".jpg, .jpeg, .png, .gif"></td>
+    </tr>
+        
+        <tr>
+            <td>My University:</td>
+            <td>
+                <select required name="university">
+                  <option value="UKM">Universiti Kebangsaan Malaysia (UKM)</option>
+                    <option value="">Please select your university</option>
+                    <option value="UM">Universiti Malaya (UM)</option>
+                    <option value="USM">Universiti Sains Malaysia (USM)</option>
+                    <option value="UPM">Universiti Putra Malaysia (UPM)</option>
+                </select>
+            </td>
+        </tr>
+      </table>
+      
+      <hr>
+      <input type="hidden" name="matricnum" value="a219588">
+      <button type="submit" name="biodata_form" value="Submit My Biodata">Submit My Biodata</button>
+      <input type="reset" value="Reset">
+    </form>
+ 
+</body>
+</html>
+</body>
+</html>

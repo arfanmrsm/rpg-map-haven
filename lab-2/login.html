@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Form</title>
+</head>
+<body>
+<h1>Login Form</h1>
+<hr>
+<form action="http://lrgs.ftsm.ukm.my/users/a123456/lab-2/process_login.php" method="post">
+  <table border="1" cellpadding="10">
+    <tr>
+      <td>Username:</td>
+      <td><input name="username" required type="text"></td>
+    </tr>
+    <tr>
+      <td>Password:</td>
+      <td><input name="password" required type="password" placeholder="Enter your password"></td>
+    </tr>
+  </table>
+<hr>
+<input type="hidden" name="matricnum" value="a219588">
+<button type="submit" value="Login" name="login_form">Login</button>
+<button type="reset" value="Reset">Reset</button>
+</form>
+</body>
+</html>

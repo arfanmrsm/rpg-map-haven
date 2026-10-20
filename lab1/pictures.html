@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Favorite Media & Pictures</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * { cursor: none !important; box-sizing: border-box; }
+    body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+    #header { background: linear-gradient(135deg, #1e293b, #0f172a); padding: 30px; text-align: center; border-bottom: 2px solid rgba(0, 161, 156, 0.3); }
+    #title { color: #00ffcc; margin: 0; font-size: 2.2rem; font-weight: 800; text-shadow: 0 0 10px rgba(0,255,204,0.4); }
+    #menu { background-color: rgba(30, 41, 59, 0.9); border-bottom: 1px solid rgba(0,161,156,0.2); }
+    #iframe { width: 100%; height: 55px; border: none; background: transparent; }
+    #content {
+      padding: 30px; min-height: 550px; background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(10px); margin: 30px auto; max-width: 950px; border-radius: 12px;
+      border: 1px solid rgba(0, 161, 156, 0.25); box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    #tblpictures {
+      width: 100%; border-collapse: collapse; border: 1px solid rgba(0, 161, 156, 0.4);
+      background: rgba(30, 41, 59, 0.5); border-radius: 8px; overflow: hidden;
+    }
+    #tblpictures th, #tblpictures td {
+      border: 1px solid rgba(0, 161, 156, 0.3); padding: 20px; color: #f8fafc; text-align: center;
+    }
+    #tblpictures th { background: rgba(0, 161, 156, 0.2); color: #00ffcc; font-size: 1.1rem; }
+    .media-box {
+      background: rgba(15, 23, 42, 0.8); padding: 15px; border-radius: 8px;
+      border: 1px solid rgba(0, 161, 156, 0.2); display: inline-block; width: 100%; max-width: 350px;
+    }
+    img { max-width: 100%; height: auto; border-radius: 6px; border: 1px solid rgba(0,161,156,0.3); }
+    audio, video { width: 100%; margin-top: 10px; border-radius: 6px; }
+    #footer { background: #1e293b; height: 55px; line-height: 55px; text-align: center; border-top: 1px solid rgba(0, 161, 156, 0.2); }
+    #footnote { font-weight: bold; color: #00a19c; }
+    #cursor-dot { width: 8px; height: 8px; background: #00a19c; border-radius: 50%; position: fixed; top:0; left:0; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); }
+    #cursor-ring { width: 44px; height: 44px; border: 2px solid rgba(0, 161, 156, 0.85); border-radius: 50%; position: fixed; top:0; left:0; pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); }
+  </style>
+</head>
+<body>
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <div id="header">
+    <h1 id="title">My Favorite Pictures & Media</h1>
+  </div>
+   
+  <div id="menu">
+    <iframe id="iframe" src="menu.html" title="Menu"></iframe>
+  </div>
+   
+  <div id="content">
+    <table id="tblpictures" border="1" cellpadding="20" cellspacing="5">
+      <tr>
+        <th colspan="2">Multimedia Showcase Gallery</th>
+      </tr>
+      <tr>
+        <th>Static</th>
+        <th>Animated</th>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="media-box">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Coding Workspace">
+          </div>
+        </td>
+        <td align="center">
+          <div class="media-box">
+            <img src="https://media.giphy.com/media/3oKIPnAiaMCws8nOsE/giphy.gif" alt="Coding Animation">
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <th>Music</th>
+        <th>Video</th>
+      </tr>
+      <tr>
+        <td align="center">
+          <div class="media-box">
+            <p style="color:#00ffcc; margin:0 0 10px 0; font-size:0.9rem;">Ambient Synthwave Track</p>
+            <audio controls>
+              <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </td>
+        <td align="center">
+          <div class="media-box">
+            <p style="color:#00ffcc; margin:0 0 10px 0; font-size:0.9rem;">Cyberpunk Tech Reel</p>
+            <video controls width="100%">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+   
+  <div id="footer">
+    <span id="footnote">Web Programming</span>
+  </div>
+
+  <script>
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    window.addEventListener('mousemove', (e) => {
+      dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
+      ring.style.left = `${e.clientX}px`; ring.style.top = `${e.clientY}px`;
+    });
+  </script>
+</body>
+</html>
