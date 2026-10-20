@@ -1,12 +1,13 @@
-<div id="mySidebar" class="col-auto bg-dark text-white offcanvas-lg offcanvas-start">
-        <div class="p-4">
-          <a href="#" class="navbar-brand">
-            <div class="row">
-              <h5 class=""> RPG MAP HAVEN</h5>
-            </div>
-          </a>
+    <a href="home.php" class="navbar-brand text-white text-decoration-none d-flex align-items-center">
+      <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center"
+           style="width: 36px; height: 36px;">
+        <i class="bi bi-shield-fill text-white"></i>
+      </div>
+      <h6 class="ms-2 mb-0 fw-bold">RPG Map Haven</h6>
+    </a>
  
-          <hr>
+    <hr>
+
            
           <ul class="mynav nav nav-pills flex-column">
             <li class="nav-item mb-3 mt-2">
